@@ -121,11 +121,6 @@ dependencies {
     ksp(libs.room.compiler)
 
     testImplementation(libs.junit)
-    testImplementation(libs.kotlin.test.junit5)
-    testImplementation(libs.mockk)
-    testImplementation(libs.androidx.core.testing)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.hilt.testing)
 
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
