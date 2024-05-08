@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="news_sources">News Sources</string>
+    <string name="news_articles">News Articles</string>
+    <string name="article_detail">Article Detail</string>
+    <string-array name="news_categories">
+        <item>Business</item>
+        <item>Entertainment</item>
+        <item>General</item>
+        <item>Health</item>
+        <item>Science</item>
+        <item>Sports</item>
+        <item>Technology</item>
+    </string-array>
+    <string name="loading_source_category">Please wait, we\'re trying to get the sources for %1$s category…</string>
+    <string name="sources_empty_info">Please choose category or type another keyword…</string>
+    <string name="two_params">%1$s - %2$s</string>
+    <string name="articles_empty_info">Please choose another source or type another keyword…</string>
+
+    <!--General States-->
+    <string name="loading">Loading…</string>
+    <string name="try_again">Try Again</string>
+    <string name="data_not_found">Data Not Found</string>
+    <string name="general_error_message">Something went wrong on our end…</string>
+</resources>
