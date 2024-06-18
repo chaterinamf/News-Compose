@@ -1,7 +1,9 @@
 package com.compose.news.presentation.article.list
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,10 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.compose.news.R
-import com.compose.news.data.model.article.Article
 import com.compose.news.util.EmptyView
 import com.compose.news.util.ErrorMessage
 import com.compose.news.util.LoadingNextPageItem
@@ -55,11 +55,10 @@ fun ArticlesScreen(
         SearchBar(
             viewModel = viewModel,
             sourceId = sourceId,
-            onClick = onClick,
             backButton = { navController.popBackStack() }
         )
         ArticlesLazyColumn(
-            articlePagingItems = viewModel.articleState.collectAsLazyPagingItems(),
+            viewModel = viewModel,
             onClick = onClick
         )
     }
@@ -70,7 +69,6 @@ fun ArticlesScreen(
 private fun SearchBar(
     viewModel: NewsArticlesViewModel,
     sourceId: String,
-    onClick: (String) -> Unit,
     backButton: () -> Unit
 ) {
     var text by rememberSaveable { mutableStateOf("") }
@@ -135,18 +133,18 @@ private fun SearchBar(
             }
         }
     }
-    ArticlesLazyColumn(
-        articlePagingItems = viewModel.articleState.collectAsLazyPagingItems(),
-        onClick = onClick
-    )
 }
 
 @Composable
 private fun ArticlesLazyColumn(
-    articlePagingItems: LazyPagingItems<Article>,
+    viewModel: NewsArticlesViewModel,
     onClick: (String) -> Unit
 ) {
-    LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
+    val articlePagingItems = viewModel.articleState.collectAsLazyPagingItems()
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+    ) {
         items(articlePagingItems.itemCount) { index ->
             ItemArticle(
                 article = articlePagingItems[index],
